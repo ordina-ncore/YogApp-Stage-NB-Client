@@ -1,0 +1,56 @@
+<ion-content class="ion-padding ion-text-center noSessions" *ngIf="!receivedSession">
+  <ion-icon name="bug-outline" size="large"></ion-icon>
+  <p><i>No data for this session</i></p>
+</ion-content>
+<ion-content *ngIf="receivedSession">
+      <ion-card>
+        <img src={{receivedSession?.teacher?.profilePicture}} />
+        <ion-card-header>
+            <ion-card-title>
+              <ion-text class="cardTitleSessionDetails">{{receivedSession.title}}</ion-text>
+            </ion-card-title>
+          </ion-card-header>
+            <ion-card-content class="ion-no-padding">
+              <ion-grid class="ion-padding">
+                <ion-row>
+                  <ion-col><ion-icon name="today-outline"></ion-icon> {{receivedSession.startDateTime | date:'dd/MM/yyyy'}}</ion-col>
+                  <ion-col><ion-icon name="time-outline"></ion-icon> {{receivedSession.startDateTime | date:'HH:mm'}} - {{receivedSession.endDateTime | date:'HH:mm'}}</ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col><ion-icon name="location-outline"></ion-icon> {{receivedSession.room?.name}}</ion-col>
+                  <ion-col><ion-icon name="person-outline"></ion-icon> {{receivedSession.teacher?.firstName}}  {{receivedSession.teacher?.lastName}}</ion-col>
+                </ion-row>
+              </ion-grid>
+              <ion-list >
+                <ion-list-header>
+                  <ion-label>Participants</ion-label>
+                </ion-list-header>
+                <div *ngIf="receivedSession.participants && receivedSession.participants.length > 0 ">
+                <div *ngFor="let participant of receivedSession.participants">
+                  <ion-item>
+                    <ion-chip class="detailChip">
+                        <ion-avatar>
+                          <img src={{participant.user?.profilePicture}} />
+                        </ion-avatar>
+                        <ion-label>{{participant.user?.firstName}} {{participant.user?.lastName}}</ion-label>
+                    <div >
+                      <ion-icon name="close-circle" ></ion-icon>
+                    </div>
+                    </ion-chip>
+                  </ion-item>
+                </div>
+              </div>
+              <div *ngIf="!receivedSession.participants || receivedSession.participants.length === 0 ">
+                <p class="ion-padding">no participants (yet)</p>
+              </div>
+              </ion-list>
+              <br>
+            </ion-card-content>
+            <ion-footer>
+            <ion-toolbar>
+              <ion-chip slot="start" [outline]="true">{{receivedSession.participants?.length}} / {{receivedSession.capacity}} Participants</ion-chip>
+              <ion-button slot="end" color="success">Sign Up</ion-button>
+            </ion-toolbar>
+          </ion-footer>
+      </ion-card>
+</ion-content>

@@ -1,0 +1,3 @@
+<ion-content>
+  <app-create-session-view [receivedRooms]="rooms$ | async" (createdSession)="receiveCreatedRoom($event)"></app-create-session-view>
+</ion-content>

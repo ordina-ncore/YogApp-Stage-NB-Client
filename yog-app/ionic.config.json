@@ -1,0 +1,7 @@
+{
+  "name": "YogApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

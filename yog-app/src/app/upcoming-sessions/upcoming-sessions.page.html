@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title size="medium">Upcoming Sessions</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onBtnCreateNewSessionClicked()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-button (click)="handleRefresh()">
+        <ion-icon name="refresh-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-progress-bar *ngIf="showLoader" type="indeterminate"></ion-progress-bar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <app-upcoming-sessions-view [receivedSessions]="sessions$ | async" [isLoading]="isLoading" (btnShowSessionsDetailsClicked)="onBtnShowSessionsDetailsClicked($event[0])"></app-upcoming-sessions-view>
+</ion-content>
+
+
