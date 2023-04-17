@@ -1,0 +1,102 @@
+<ion-content>
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>{{ 'edit_session' | translate }}</ion-title>
+        <ion-buttons slot="start">
+          <ion-button (click)="onBackBtnClicked()"
+            ><ion-icon name="chevron-back-outline"></ion-icon>{{ 'back' | translate }}</ion-button
+          >
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button type="submit" [disabled]="editForm.invalid"
+            >{{ 'edit' | translate }}</ion-button
+          >
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-item>
+      <ion-label position="floating">{{ 'title' | translate }}</ion-label>
+      <ion-input
+        required="true"
+        type="text"
+        formControlName="title"
+        name="title"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">{{ 'room' | translate }}</ion-label>
+      <ion-select formControlName="room" name="room">
+        <ion-select-option *ngFor="let r of receivedRooms" [value]="r.id"
+          >{{ r.name }} (capacity: {{ r.capacity }})</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">{{ 'max_participants' | translate }}</ion-label>
+      <ion-input
+        type="number"
+        formControlName="capacity"
+        name="capacity"
+        [max]="editForm.value.room.capacity"
+        [value]="editForm.value.room.capacity"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">{{ 'teacher' | translate }}</ion-label>
+      <ion-select formControlName="teacher" name="teacher">
+        <ion-select-option *ngFor="let t of receivedTeachers" [value]="t.azureId"
+          >{{ t.firstName }} {{t.lastName}}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">{{ 'start_time' | translate }}</ion-label>
+      <ion-input
+        name="startDateTime"
+        id="startDateTime"
+        formControlName="startDateTime"
+        [value]="editForm.value.startDateTime"
+      ></ion-input>
+      <ion-popover trigger="startDateTime" size="cover">
+        <ng-template>
+          <ion-datetime
+            presentation="date-time"
+            formControlName="startDateTime"
+            name="startDateTime"
+            [min]="currentDay"
+            [minuteValues]="[0, 15, 30, 45]"
+            locale="nl-NL"
+          ></ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+
+    <ion-item [disabled]="!editForm.value.startDateTime">
+      <ion-label position="floating">{{ 'end_time' | translate }}</ion-label>
+      <ion-input
+        name="endDateTime"
+        id="endDateTime"
+        formControlName="endDateTime"
+        [value]="editForm.value.endDateTime"
+      ></ion-input>
+      <ion-popover trigger="endDateTime" size="cover">
+        <ng-template>
+          <ion-datetime
+            presentation="date-time"
+            formControlName="endDateTime"
+            name="endDateTime"
+            [min]="editForm.value.startDateTime"
+            [max]="getStartDateDay()"
+            [minuteValues]="[0, 15, 30, 45]"
+            locale="nl-NL"
+          ></ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+  </form>
+</ion-content>

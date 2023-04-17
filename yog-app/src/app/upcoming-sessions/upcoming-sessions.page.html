@@ -1,12 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title size="medium">Upcoming Sessions</ion-title>
+    <ion-title size="medium">{{ 'upcoming_sessions' | translate }}</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="onBtnCreateNewSessionClicked()">
-        <ion-icon name="add-outline"></ion-icon>
-      </ion-button>
+      <ion-menu-toggle>
+        <ion-avatar class="profilePic"><img src="{{userProfilePic}}"></ion-avatar>
+      </ion-menu-toggle>
     </ion-buttons>
     <ion-buttons slot="start">
+      <ion-button *ngIf="currentUser?.role === 'Teacher'" (click)="onBtnCreateNewSessionClicked()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
       <ion-button (click)="handleRefresh()">
         <ion-icon name="refresh-outline"></ion-icon>
       </ion-button>
@@ -15,8 +18,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content id="main-content">
   <app-upcoming-sessions-view [receivedSessions]="sessions$ | async" [isLoading]="isLoading" (btnShowSessionsDetailsClicked)="onBtnShowSessionsDetailsClicked($event[0])"></app-upcoming-sessions-view>
 </ion-content>
+
+
+<ion-menu contentId="main-content" type="overlay" side="end">
+    <app-profile></app-profile>
+</ion-menu>
+
 
 

@@ -1,6 +1,13 @@
-import { Component, Input, Output, OnChanges, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  OnChanges,
+  EventEmitter,
+} from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { type } from 'os';
-import { Session } from 'src/models';
+import { Session, User } from 'src/models';
 
 @Component({
   selector: 'app-upcoming-sessions-view',
@@ -8,17 +15,14 @@ import { Session } from 'src/models';
   styleUrls: ['./upcoming-sessions-view.component.scss'],
 })
 export class UpcomingSessionsViewComponent implements OnChanges {
-
   @Input() receivedSessions: Session[] | undefined | null;
   @Input() isLoading = false;
   @Output() btnShowSessionsDetailsClicked = new EventEmitter<[string]>();
-  constructor() { }
+  constructor(public translate: TranslateService) {}
 
-  ngOnChanges() {
-    console.log(this.receivedSessions)
-  }
+  ngOnChanges() {}
 
-  getDayString(startDateTime: Date| undefined): string {
+  getDayString(startDateTime: Date | undefined): string {
     if (!startDateTime) {
       return '';
     }
@@ -29,19 +33,58 @@ export class UpcomingSessionsViewComponent implements OnChanges {
 
     const startDay: number = startDate.getDate();
     const startMonth: number = startDate.getMonth() + 1;
-    const startYear: number  = startDate.getFullYear();
+    const startYear: number = startDate.getFullYear();
 
     if (startDate.toDateString() === today.toDateString()) {
-      return 'Today';
+      return this.translate.instant('today');
     } else if (startDate.toDateString() === tomorrow.toDateString()) {
-      return 'Tomorrow';
+      return this.translate.instant('tomorrow');
     } else {
-      return `${startDay.toString().padStart(2, '0')}/${startMonth.toString().padStart(2, '0')}/${startYear.toString()}`;
+      return `${startDay.toString().padStart(2, '0')}/${startMonth
+        .toString()
+        .padStart(2, '0')}/${startYear.toString()}`;
     }
   }
 
-  onBtnShowSessionsDetailsClicked(selectedSessionId?: string) {
-   if(selectedSessionId) this.btnShowSessionsDetailsClicked.emit([selectedSessionId])
+  getCapacityString(session: Session): string {
+    if (session.capacity !== undefined && session.participants !== undefined) {
+      if (session.capacity <= session.participants.length) {
+        return this.translate.instant('full');
+      } else {
+        return session.participants.length + ' / ' + session.capacity;
+      }
+    } else {
+      return '';
+    }
   }
-
+  getCapacityStringColor(session: Session): string {
+    if (session.capacity !== undefined && session.participants !== undefined) {
+      if (session.capacity <= session.participants.length) {
+        return 'red';
+      } else if (session.capacity - session.participants.length <= 3) {
+        return 'orange';
+      } else if (session.capacity - session.participants.length <= 5) {
+        return 'yellow';
+      } else {
+        return 'green';
+      }
+    } else {
+      return '';
+    }
+  }
+  getTeacherNameString(session: Session): string {
+    if (session.teacher !== undefined) {
+    const currentUser: string | null = localStorage.getItem('currentUser');
+    if (currentUser) {
+      const loggedInUser: User = JSON.parse(currentUser);
+        if(session.teacher.azureId === loggedInUser.azureId) return this.translate.instant('you')
+        else return session.teacher.firstName + ' '  + session.teacher.lastName;
+      }
+    }
+    return this.translate.instant('unknown');
+    }
+  onBtnShowSessionsDetailsClicked(selectedSessionId?: string) {
+    if (selectedSessionId)
+      this.btnShowSessionsDetailsClicked.emit([selectedSessionId]);
+  }
 }

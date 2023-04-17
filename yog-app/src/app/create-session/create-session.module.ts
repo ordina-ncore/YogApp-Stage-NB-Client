@@ -8,6 +8,7 @@ import { CreateSessionPageRoutingModule } from './create-session-routing.module'
 
 import { CreateSessionPage } from './create-session.page';
 import { CreateSessionViewComponent } from './create-session-view/create-session-view.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { CreateSessionViewComponent } from './create-session-view/create-session
     FormsModule ,
     ReactiveFormsModule,
     IonicModule,
-    CreateSessionPageRoutingModule
+    CreateSessionPageRoutingModule,
+    TranslateModule
   ],
   declarations: [CreateSessionPage, CreateSessionViewComponent]
 })

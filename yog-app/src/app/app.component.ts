@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,10 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private translate: TranslateService) {
+    translate.setDefaultLang('en');
+    translate.use('nl');
+    translate.use('en');
+    translate.use('fr');
+  }
 }

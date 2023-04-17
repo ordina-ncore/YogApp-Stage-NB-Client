@@ -1,0 +1,72 @@
+<div
+  *ngIf="receivedSessions?.length === 0 && !isLoading"
+  class="ion-padding ion-text-center noSessions"
+>
+  <ion-icon name="calendar-outline" size="large"></ion-icon>
+  <p><i>{{ 'not_signed_up_for_sessions' | translate }}</i></p>
+</div>
+
+<div *ngIf="receivedSessions && receivedSessions.length > 0">
+  <ion-list>
+    <div *ngFor="let session of receivedSessions">
+      <ion-card
+        class="d-flex ion-justify-content-between ion-align-items-center ion-padding card"
+        (click)="onBtnShowSessionsDetailsClicked(session.id)"
+      >
+        <div class="d-flex ion-justify-content-start ion-align-items-center">
+          <div class="ion-padding">
+            <ion-icon name="today-outline" size="large"></ion-icon>
+          </div>
+          <div>
+            <ion-card-title>
+              <ion-text class="cardTitle">{{ session.title }}</ion-text>
+            </ion-card-title>
+            <ion-card-subtitle class="cardSubtitle">
+              <ion-grid class="ion-no-padding">
+                <ion-row>
+                  <ion-col class="{{ getCapacityStringColor(session) }}">
+                    <ion-icon class="always" name="people-outline"></ion-icon>
+                    {{ getCapacityString(session) }}
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col
+                    name="today-outline"
+                    [class.today]="
+                      getDayString(session.startDateTime) === this.translate.instant('today')
+                    "
+                    [class.tomorrow]="
+                      getDayString(session.startDateTime) === this.translate.instant('tomorrow')
+                    "
+                  >
+                    <ion-icon name="today-outline" class="always"></ion-icon>
+                    {{ getDayString(session.startDateTime) }}
+                  </ion-col>
+                  <ion-col
+                    ><ion-icon name="time-outline"></ion-icon>
+                    {{ session.startDateTime | date : "HH:mm" }} -
+                    {{ session.endDateTime | date : "HH:mm" }}</ion-col
+                  >
+                </ion-row>
+                <ion-row>
+                  <ion-col
+                    ><ion-icon name="location-outline"></ion-icon>
+                    {{ session.room?.name }}</ion-col
+                  >
+                  <ion-col
+                    ><ion-icon name="person-outline"></ion-icon>
+                    {{getTeacherNameString(session)}}
+                    </ion-col
+                  >
+                </ion-row>
+              </ion-grid>
+            </ion-card-subtitle>
+          </div>
+        </div>
+        <div>
+          <ion-icon name="chevron-forward-outline" size="large"></ion-icon>
+        </div>
+      </ion-card>
+    </div>
+  </ion-list>
+</div>

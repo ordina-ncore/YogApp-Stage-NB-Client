@@ -32,22 +32,42 @@
   src: url('./assets/fonts/AllerDisplay.ttf');
 }
 
-.d-flex{
-  display:flex;
+.d-flex {
+  display: flex;
 }
-.cardTitle{
+
+.cardTitle {
   font-size: 50%;
 }
-.card{
-  height: 10vh;
+
+.card {
+  max-height: 12vh;
 }
-.cardSubtitle{
+
+.cardSubtitle {
   width: 29vh;
 }
-.cardTitleSessionDetails{
+
+.cardTitleSessionDetails {
   font-size: 80%;
 }
-.detailChip{
+
+.detailChip {
   width: 100%;
 }
 
+// ion-toolbar {
+//   --background: #c2fbff;
+// }
+
+// ion-card {
+//   --background: #c2fbff;
+// }
+
+// ion-content {
+//   --background: #c2fbff;
+// }
+
+// ion-list-item {
+//   --background: #c2fbff;
+// }

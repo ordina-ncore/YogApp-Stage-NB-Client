@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ user?.firstName }} {{ user?.lastName }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="logOut()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<div class="profile-view">
+  <ion-list class="list-view">
+    <ion-item>
+      <ion-label><ion-icon name="language-outline"></ion-icon> {{ 'language' | translate }}</ion-label>
+      <ion-select (ionChange)="changeLanguage($event)">
+        <ion-select-option value="en">{{ 'english' | translate }}</ion-select-option>
+        <ion-select-option value="nl">{{ 'dutch' | translate }}</ion-select-option>
+        <ion-select-option value="fr">{{ 'french' | translate }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label><ion-icon name="contrast-outline"></ion-icon> {{ 'theme' | translate }}</ion-label>
+      <ion-toggle slot="end" [enableOnOffLabels]="true" (ionChange)="onDarkModeChecked()" [checked]="selectedTheme === 'dark'"></ion-toggle>
+    </ion-item>
+  </ion-list>
+  </div>
+

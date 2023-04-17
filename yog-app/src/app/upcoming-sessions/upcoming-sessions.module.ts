@@ -6,13 +6,17 @@ import { UpcomingSessionsPage } from './upcoming-sessions.page';
 
 import { UpcomingSessionsPageRoutingModule } from './upcoming-sessions-routing.module';
 import { UpcomingSessionsViewComponent } from './upcoming-sessions-view/upcoming-sessions-view.component';
+import { ProfilePageModule } from '../profile/profile.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    UpcomingSessionsPageRoutingModule
+    UpcomingSessionsPageRoutingModule,
+    ProfilePageModule,
+    TranslateModule
   ],
   declarations: [UpcomingSessionsPage, UpcomingSessionsViewComponent]
 })

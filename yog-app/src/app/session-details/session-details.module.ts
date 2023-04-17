@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { SessionDetailRoutingModule } from './session-details-routing.module';
 import { SessionDetailsViewComponent } from './session-details-view/session-details-view.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -14,7 +15,8 @@ import { SessionDetailsViewComponent } from './session-details-view/session-deta
     IonicModule,
     CommonModule,
     FormsModule,
-    SessionDetailRoutingModule
+    SessionDetailRoutingModule,
+    TranslateModule
   ],
 })
 export class SessionDetailsModule { }

@@ -2,17 +2,13 @@
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="upcoming-sessions">
       <ion-icon name="calendar-outline"></ion-icon>
-      <ion-label>Upcoming</ion-label>
+      <ion-label>{{ 'upcoming' | translate }}</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab2">
+    <ion-tab-button tab="my-sessions">
       <ion-icon name="time-outline"></ion-icon>
-      <ion-label>My sessions</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="tab3">
-      <ion-icon name="person-circle-outline"></ion-icon>
-      <ion-label>Profile</ion-label>
+      <ion-label>{{ 'my_sessions' | translate }}</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
+

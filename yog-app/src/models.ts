@@ -1,23 +1,21 @@
-import { Timestamp } from "rxjs";
+import { Timestamp } from 'rxjs';
 
-export interface User{
-  id?: string;
+export interface User {
   azureId?: string;
   firstName?: string;
   lastName?: string;
   profilePicture?: string;
-  birthDate?: Date;
-  isAdmin?: boolean;
+  role?: string;
 }
 
-export interface Room{
+export interface Room {
   id?: string;
   name?: string;
   address?: string;
   capacity?: number;
 }
 
-export interface SessionParticipant{
+export interface SessionParticipant {
   id?: string;
   matNumber: number;
   timeStampSignUp?: string;
@@ -25,7 +23,7 @@ export interface SessionParticipant{
   user?: User;
 }
 
-export interface Session{
+export interface Session {
   id?: string;
   title?: string;
   startDateTime?: Date;
@@ -39,11 +37,25 @@ export interface Session{
   participants?: SessionParticipant[];
 }
 
-export interface CreateSessionInput{
+export interface CreateSessionInput {
   title?: string;
   startDateTime?: Date;
   endDateTime?: Date;
   capacity?: number;
   teacherId?: string;
   roomId?: Room;
+}
+export interface EditSessionInput {
+  id?: string;
+  title?: string;
+  startDateTime?: Date;
+  endDateTime?: Date;
+  capacity?: number;
+  teacherId?: string;
+  roomId?: Room;
+}
+export interface CreateSessionParticipantInput {
+  sessionId?: string;
+  userAzureId?: string;
+  matNumber?: number;
 }

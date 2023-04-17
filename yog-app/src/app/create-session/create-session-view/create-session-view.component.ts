@@ -8,7 +8,8 @@ import {
   AbstractControl,
   FormControl,
 } from '@angular/forms';
-import { CreateSessionInput, Room, Session } from 'src/models';
+import { Router } from '@angular/router';
+import { CreateSessionInput, Room, Session, User } from 'src/models';
 
 @Component({
   selector: 'app-create-session-view',
@@ -16,22 +17,30 @@ import { CreateSessionInput, Room, Session } from 'src/models';
   styleUrls: ['./create-session-view.component.scss'],
 })
 export class CreateSessionViewComponent {
-  @Input() receivedRooms: Room[] | undefined | null;
-  @Output() createdSession = new EventEmitter<Object>();
   form: FormGroup;
   date!: Date;
   startDateTime!: Date;
   endDateTime!: Date;
   currentDay: string = new Date().toISOString();
+  loggedInUser: User | undefined | null;
+  @Input() receivedRooms: Room[] | undefined | null;
+  @Input() receivedTeachers: User[] | undefined | null;
+  @Output() createSession = new EventEmitter<[Object]>();
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private router: Router) {
+    const currentUser: string | null = localStorage.getItem('currentUser');
+    if (currentUser) {
+     this.loggedInUser = JSON.parse(currentUser);
+    }
+
     this.form = this.formBuilder.group({
       title: new FormControl('', [
         Validators.required,
         Validators.maxLength(20),
       ]),
       room: new FormControl('', Validators.required),
-      capacity: new FormControl('', Validators.required),
+      teacher: new FormControl('', Validators.required),
+      capacity: new FormControl('', [Validators.required, this.capacityValidator()]),
       startDateTime: new FormControl('', Validators.required),
       endDateTime: new FormControl('', Validators.required),
     });
@@ -48,17 +57,36 @@ export class CreateSessionViewComponent {
     return maxEndDateTime.toISOString();
   }
   onSubmit() {
-    if (this.form.valid) {
-      let createSessionInput: CreateSessionInput = {
-        title: this.form.value.title,
-        roomId: this.form.value.room.id,
-        capacity: this.form.value.capacity,
-        startDateTime: this.form.value.startDateTime,
-        endDateTime: this.form.value.endDateTime,
-        teacherId: '6cd47e7d-bd19-4238-9974-65b825ee5539',
-      };
-      console.log(createSessionInput);
-      this.createdSession.emit([createSessionInput]);
+      if (this.form.valid) {
+        let createSessionInput: CreateSessionInput = {
+          title: this.form.value.title,
+          roomId: this.form.value.room.id,
+          capacity: this.form.value.capacity,
+          startDateTime: this.form.value.startDateTime,
+          endDateTime: this.form.value.endDateTime,
+          teacherId: this.form.value.teacher.azureId,
+        };
+        console.log(createSessionInput);
+        this.createSession.emit([createSessionInput]);
     }
+  }
+  capacityValidator(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} | null => {
+      const formGroup = control.parent as FormGroup;
+      if (!formGroup) {
+        return null;
+      }
+      const capacity = control.value;
+      const room = formGroup.controls['room'].value;
+      if (capacity && room.capacity && capacity > room.capacity) {
+        return { 'capacityExceeded': true };
+      }
+      return null;
+    };
+  }
+
+
+  onBackBtnClicked() {
+    this.router.navigate(['tabs/upcoming-sessions']);
   }
 }

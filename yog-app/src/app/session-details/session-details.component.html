@@ -1,11 +1,9 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button default-href="#"></ion-back-button>
-    </ion-buttons>
-    <ion-title size="medium">Session details</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content [fullscreen]="true">
-  <app-session-details-view *ngIf="(session$) !== null" [receivedSession]="session$ | async"></app-session-details-view>
+<ion-content scroll-y="false">
+  <app-session-details-view
+    *ngIf="session$ !== null"
+    [receivedSession]="session$ | async"
+    [isLoading]="isLoading"
+    (btnEditClicked)="btnEditClicked($event)"
+    (btnCancelClicked)="btnCancelClicked()"
+  ></app-session-details-view>
 </ion-content>

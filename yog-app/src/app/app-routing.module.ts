@@ -9,6 +9,10 @@ const routes: Routes = [
   {
     path: 'create-session',
     loadChildren: () => import('./create-session/create-session.module').then( m => m.CreateSessionPageModule)
+  },
+  {
+    path: 'edit-session',
+    loadChildren: () => import('./edit-session/edit-session.module').then( m => m.EditSessionPageModule)
   }
 ];
 @NgModule({

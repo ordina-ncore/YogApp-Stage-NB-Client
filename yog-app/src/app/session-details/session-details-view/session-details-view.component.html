@@ -1,56 +1,189 @@
-<ion-content class="ion-padding ion-text-center noSessions" *ngIf="!receivedSession">
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="onBackBtnClicked()"
+        ><ion-icon name="chevron-back-outline"></ion-icon>{{ 'back' | translate }}</ion-button
+      >
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button
+        *ngIf="
+          currentUser?.role === 'User' && GetCurrentUserMatNumber() === null
+        "
+        color="success"
+        [disabled]="selectedMatNumber === null"
+        (click)="signUp()"
+        >{{ 'sign_up' | translate }}</ion-button
+      >
+      <ion-button
+        *ngIf="
+          currentUser?.role === 'User' && GetCurrentUserMatNumber() !== null
+        "
+        color="danger"
+        (click)="onBtnUserCancelClicked()"
+        >{{ 'unregister' | translate }}</ion-button
+      >
+      <ion-button
+        *ngIf="currentUser?.role === 'Teacher'"
+        color="warning"
+        (click)="onBtnEditClicked()"
+        ><ion-icon name="create-outline"></ion-icon
+      ></ion-button>
+      <ion-button
+        *ngIf="currentUser?.role === 'Teacher'"
+        color="danger"
+        (click)="onBtnCancelClicked()"
+        ><ion-icon name="trash-outline"></ion-icon
+      ></ion-button>
+    </ion-buttons>
+
+    <ion-title size="medium">{{ 'session_details' | translate }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content
+  [fullscreen]="true"
+  class="ion-padding ion-text-center noSessions"
+  *ngIf="!receivedSession && isLoading"
+>
   <ion-icon name="bug-outline" size="large"></ion-icon>
-  <p><i>No data for this session</i></p>
+  <p><i>{{ 'no_session_data' | translate }}</i></p>
 </ion-content>
+
 <ion-content *ngIf="receivedSession">
-      <ion-card>
-        <img src={{receivedSession?.teacher?.profilePicture}} />
-        <ion-card-header>
-            <ion-card-title>
-              <ion-text class="cardTitleSessionDetails">{{receivedSession.title}}</ion-text>
-            </ion-card-title>
-          </ion-card-header>
-            <ion-card-content class="ion-no-padding">
-              <ion-grid class="ion-padding">
-                <ion-row>
-                  <ion-col><ion-icon name="today-outline"></ion-icon> {{receivedSession.startDateTime | date:'dd/MM/yyyy'}}</ion-col>
-                  <ion-col><ion-icon name="time-outline"></ion-icon> {{receivedSession.startDateTime | date:'HH:mm'}} - {{receivedSession.endDateTime | date:'HH:mm'}}</ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col><ion-icon name="location-outline"></ion-icon> {{receivedSession.room?.name}}</ion-col>
-                  <ion-col><ion-icon name="person-outline"></ion-icon> {{receivedSession.teacher?.firstName}}  {{receivedSession.teacher?.lastName}}</ion-col>
-                </ion-row>
-              </ion-grid>
-              <ion-list >
-                <ion-list-header>
-                  <ion-label>Participants</ion-label>
-                </ion-list-header>
-                <div *ngIf="receivedSession.participants && receivedSession.participants.length > 0 ">
-                <div *ngFor="let participant of receivedSession.participants">
-                  <ion-item>
-                    <ion-chip class="detailChip">
-                        <ion-avatar>
-                          <img src={{participant.user?.profilePicture}} />
-                        </ion-avatar>
-                        <ion-label>{{participant.user?.firstName}} {{participant.user?.lastName}}</ion-label>
-                    <div >
-                      <ion-icon name="close-circle" ></ion-icon>
-                    </div>
-                    </ion-chip>
-                  </ion-item>
-                </div>
-              </div>
-              <div *ngIf="!receivedSession.participants || receivedSession.participants.length === 0 ">
-                <p class="ion-padding">no participants (yet)</p>
-              </div>
-              </ion-list>
-              <br>
-            </ion-card-content>
-            <ion-footer>
-            <ion-toolbar>
-              <ion-chip slot="start" [outline]="true">{{receivedSession.participants?.length}} / {{receivedSession.capacity}} Participants</ion-chip>
-              <ion-button slot="end" color="success">Sign Up</ion-button>
-            </ion-toolbar>
-          </ion-footer>
-      </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <ion-text class="cardTitleSessionDetails">{{
+          receivedSession.title
+        }}</ion-text>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="ion-no-padding">
+      <ion-grid class="ion-padding">
+        <ion-row>
+          <ion-col
+            ><ion-icon name="today-outline"></ion-icon>
+            {{ receivedSession.startDateTime | date : "dd/MM/yyyy" }}</ion-col
+          >
+          <ion-col
+            ><ion-icon name="time-outline"></ion-icon>
+            {{ receivedSession.startDateTime | date : "HH:mm" }} -
+            {{ receivedSession.endDateTime | date : "HH:mm" }}</ion-col
+          >
+        </ion-row>
+        <ion-row>
+          <ion-col
+            ><ion-icon name="location-outline"></ion-icon>
+            {{ receivedSession.room?.name }}</ion-col
+          >
+          <ion-col
+            ><ion-icon name="person-outline"></ion-icon>
+            {{ receivedSession.teacher?.firstName }}
+            {{ receivedSession.teacher?.lastName }}</ion-col
+          >
+        </ion-row>
+      </ion-grid>
+      <ion-grid *ngIf="receivedSession.capacity !== null" class="ion-padding">
+        <ion-row>
+          <ng-container *ngFor="let i of getCapacityRange()">
+            <ion-col size="3" class="d-flex ion-justify-content-center">
+              <ng-container
+                *ngIf="
+                  receivedSession.participants &&
+                  receivedSession.participants.length > 0
+                "
+              >
+                <ng-container
+                  *ngIf="
+                    isMatNumberTaken(i) && GetCurrentUserMatNumber() === null
+                  "
+                >
+                  <ion-button
+                    color="primary"
+                    [disabled]="currentUser?.role === 'User'"
+                    (click)="onBtnShowParticipantInfoClicked(i)"
+                  >
+                    <ion-icon name="person-circle-outline"></ion-icon>
+                  </ion-button>
+                </ng-container>
+                <ng-container
+                  *ngIf="isMatNumberTaken(i) && GetCurrentUserMatNumber() === i"
+                >
+                  <ion-button
+                    [color]="
+                      currentUser?.role === 'User' ? 'success' : 'primary'
+                    "
+                    [disabled]="currentUser?.role === 'User'"
+                  >
+                    <ng-container *ngIf="currentUser?.role === 'User'">
+                      <ion-icon name="checkmark-circle-outline"></ion-icon>
+                    </ng-container>
+                    <ng-container *ngIf="currentUser?.role === 'Teacher'">
+                      <ion-icon name="person-circle-outline"></ion-icon>
+                    </ng-container>
+                  </ion-button>
+                </ng-container>
+                <ng-container *ngIf="!isMatNumberTaken(i)">
+                  <ion-button
+                    [color]="selectedMatNumber === i ? 'success' : 'medium'"
+                    (click)="selectedMatNumber = i"
+                    [disabled]="
+                      (currentUser?.role === 'Teacher' &&
+                        !isMatNumberTaken(i)) ||
+                      (currentUser?.role === 'User' &&
+                        GetCurrentUserMatNumber() !== null)
+                    "
+                  >
+                    <ng-container
+                      *ngIf="
+                        selectedMatNumber === i ||
+                        GetCurrentUserMatNumber() === i
+                      "
+                    >
+                      <ion-icon name="checkmark-circle-outline"></ion-icon>
+                    </ng-container>
+                    <ng-container *ngIf="selectedMatNumber !== i">
+                      <ion-icon name="radio-button-off-outline"></ion-icon>
+                    </ng-container>
+                  </ion-button>
+                </ng-container>
+              </ng-container>
+              <ng-container
+                *ngIf="
+                  !receivedSession.participants ||
+                  receivedSession.participants.length === 0
+                "
+              >
+                <ion-button
+                  [color]="selectedMatNumber === i ? 'success' : 'medium'"
+                  (click)="selectedMatNumber = i"
+                  [disabled]="
+                    currentUser?.role === 'Teacher' && !isMatNumberTaken(i)
+                  "
+                >
+                  <ng-container *ngIf="selectedMatNumber === i">
+                    <ion-icon name="checkmark-circle-outline"></ion-icon>
+                  </ng-container>
+                  <ng-container *ngIf="selectedMatNumber !== i">
+                    <ion-icon name="radio-button-off-outline"></ion-icon>
+                  </ng-container>
+                </ion-button>
+              </ng-container>
+            </ion-col>
+          </ng-container>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+    <ion-footer>
+      <ion-toolbar>
+        <ion-chip slot="start" [outline]="true"
+          >{{ receivedSession.participants?.length }} /
+          {{ receivedSession.capacity }} {{ 'participants' | translate }}</ion-chip
+        >
+        <br />
+        <br />
+      </ion-toolbar>
+    </ion-footer>
+  </ion-card>
 </ion-content>

@@ -9,40 +9,61 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('../upcoming-sessions/upcoming-sessions.module').then(m => m.UpcomingSessionsPageModule)
+        loadChildren: () =>
+          import('../upcoming-sessions/upcoming-sessions.module').then(
+            (m) => m.UpcomingSessionsPageModule
+          ),
       },
       {
         path: 'upcoming-sessions',
-        loadChildren: () => import('../upcoming-sessions/upcoming-sessions.module').then(m => m.UpcomingSessionsPageModule)
+        loadChildren: () =>
+          import('../upcoming-sessions/upcoming-sessions.module').then(
+            (m) => m.UpcomingSessionsPageModule
+          ),
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+        path: 'my-sessions',
+        loadChildren: () =>
+          import('../my-sessions/my-sessions.module').then((m) => m.MySessionsPageModule),
       },
       {
-        path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        path: 'profile',
+        loadChildren: () =>
+          import('../profile/profile.module').then((m) => m.ProfilePageModule),
       },
       {
         path: 'session-details/:id',
-        loadChildren: () => import('../session-details/session-details.module').then(m => m.SessionDetailsModule)
+        loadChildren: () =>
+          import('../session-details/session-details.module').then(
+            (m) => m.SessionDetailsModule
+          ),
       },
       {
         path: 'create-session',
-        loadChildren: () => import('../create-session/create-session.module').then(m => m.CreateSessionPageModule)
+        loadChildren: () =>
+          import('../create-session/create-session.module').then(
+            (m) => m.CreateSessionPageModule
+          ),
+      },
+      {
+        path: 'edit-session/:id',
+        loadChildren: () =>
+          import('../edit-session/edit-session.module').then(
+            (m) => m.EditSessionPageModule
+          ),
       },
       {
         path: '',
         redirectTo: '/upcoming-sessions',
-        pathMatch: 'full'
-      }
-    ]
+        pathMatch: 'full',
+      },
+    ],
   },
   {
     path: '',
     redirectTo: '/tabs/upcoming-sessions',
-    pathMatch: 'full'
-  }
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({

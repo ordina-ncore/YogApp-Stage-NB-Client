@@ -1,0 +1,10 @@
+<ion-header>
+<ion-toolbar>
+  <ion-title size="medium">{{ 'my_sessions' | translate }}</ion-title>
+  <ion-progress-bar *ngIf="showLoader" type="indeterminate"></ion-progress-bar>
+</ion-toolbar>
+</ion-header>
+
+<ion-content id="main-content">
+<app-my-sessions-view [receivedSessions]="sessions$ | async" [isLoading]="isLoading" (btnShowSessionsDetailsClicked)="onBtnShowSessionsDetailsClicked($event[0])"></app-my-sessions-view>
+</ion-content>
