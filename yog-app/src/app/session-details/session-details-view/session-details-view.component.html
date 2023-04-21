@@ -51,7 +51,7 @@
 </ion-content>
 
 <ion-content *ngIf="receivedSession">
-  <ion-card>
+  <ion-card class="bottom">
     <ion-card-header>
       <ion-card-title>
         <ion-text class="cardTitleSessionDetails">{{
@@ -73,9 +73,9 @@
           >
         </ion-row>
         <ion-row>
-          <ion-col
-            ><ion-icon name="location-outline"></ion-icon>
-            {{ receivedSession.room?.name }}</ion-col
+          <ion-col (click)='showRoomDetails(receivedSession.room?.id)'
+            ><u><ion-icon name="location-outline"></ion-icon>
+            {{ receivedSession.room?.name }}</u></ion-col
           >
           <ion-col
             ><ion-icon name="person-outline"></ion-icon>
@@ -181,8 +181,6 @@
           >{{ receivedSession.participants?.length }} /
           {{ receivedSession.capacity }} {{ 'participants' | translate }}</ion-chip
         >
-        <br />
-        <br />
       </ion-toolbar>
     </ion-footer>
   </ion-card>

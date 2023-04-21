@@ -13,7 +13,23 @@ const routes: Routes = [
   {
     path: 'edit-session',
     loadChildren: () => import('./edit-session/edit-session.module').then( m => m.EditSessionPageModule)
+  },  {
+    path: 'rooms',
+    loadChildren: () => import('./rooms/rooms.module').then( m => m.RoomsPageModule)
+  },
+  {
+    path: 'create-room',
+    loadChildren: () => import('./create-room/create-room.module').then( m => m.CreateRoomPageModule)
+  },
+  {
+    path: 'room-details',
+    loadChildren: () => import('./room-details/room-details.module').then( m => m.RoomDetailsPageModule)
+  },
+  {
+    path: 'edit-room',
+    loadChildren: () => import('./edit-room/edit-room.module').then( m => m.EditRoomPageModule)
   }
+
 ];
 @NgModule({
   imports: [

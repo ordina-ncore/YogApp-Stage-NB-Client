@@ -73,16 +73,21 @@ export class EditSessionPage implements OnInit {
     return this.apollo
       .watchQuery({
         query: gql`
-          {
-            rooms {
-              nodes {
-                id
-                name
-                address
-                capacity
-              }
+        query{
+          rooms(
+            where: {
+              isDeleted: { eq: false }
+            }
+          ) {
+
+            nodes{
+              id,
+              name,
+              address,
+              capacity
             }
           }
+      }
         `,
       })
       .valueChanges.pipe(map((x: any) => x.data?.rooms.nodes));

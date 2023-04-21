@@ -2,6 +2,9 @@
   <ion-toolbar>
     <ion-title size="medium">{{ 'upcoming_sessions' | translate }}</ion-title>
     <ion-buttons slot="end">
+      <ion-button (click)="handleRefresh()">
+        <ion-icon name="refresh-outline"></ion-icon>
+      </ion-button>
       <ion-menu-toggle>
         <ion-avatar class="profilePic"><img src="{{userProfilePic}}"></ion-avatar>
       </ion-menu-toggle>
@@ -10,8 +13,8 @@
       <ion-button *ngIf="currentUser?.role === 'Teacher'" (click)="onBtnCreateNewSessionClicked()">
         <ion-icon name="add-outline"></ion-icon>
       </ion-button>
-      <ion-button (click)="handleRefresh()">
-        <ion-icon name="refresh-outline"></ion-icon>
+      <ion-button *ngIf="currentUser?.role === 'Teacher'" (click)="onBtnRoomsClicked()">
+        <ion-icon name="location-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-progress-bar *ngIf="showLoader" type="indeterminate"></ion-progress-bar>

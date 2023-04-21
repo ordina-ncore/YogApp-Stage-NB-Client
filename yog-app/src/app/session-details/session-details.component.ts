@@ -108,6 +108,7 @@ export class SessionDetailsComponent implements OnInit {
                     name
                     address
                     capacity
+                    description
                 }
                 participants {
                     id

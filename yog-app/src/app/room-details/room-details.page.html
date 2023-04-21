@@ -1,0 +1,6 @@
+<ion-content scroll-y="false">
+  <app-room-details-view
+    [receivedRoom]="room$ | async"
+    (btnRemoveClicked)="btnRemoveClicked()"
+  ></app-room-details-view>
+</ion-content>

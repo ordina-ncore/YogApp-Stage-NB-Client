@@ -105,6 +105,9 @@ export class UpcomingSessionsPage implements OnInit {
   onBtnCreateNewSessionClicked() {
     this.router.navigate(['tabs/create-session']);
   }
+  onBtnRoomsClicked(){
+    this.router.navigate(['tabs/rooms']);
+  }
   queryUpcomingSessions(): Observable<Session[] | null | undefined> {
     return this.apollo
       .watchQuery({

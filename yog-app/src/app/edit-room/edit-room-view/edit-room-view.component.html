@@ -1,0 +1,55 @@
+<ion-content>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>{{ 'edit_room' | translate }}</ion-title>
+        <ion-buttons slot="start">
+          <ion-button (click)="onBackBtnClicked()"
+            ><ion-icon name="chevron-back-outline"></ion-icon>{{ 'back' | translate }}</ion-button
+          >
+        </ion-buttons>
+        <ion-buttons slot="end">
+          <ion-button type="submit" [disabled]="form.invalid"
+            >{{ 'edit' | translate }}</ion-button
+          >
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-item>
+      <ion-label position="floating">{{ 'name' | translate }}</ion-label>
+      <ion-input
+        required="true"
+        type="text"
+        formControlName="name"
+        name="name"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">{{ 'capacity' | translate }}</ion-label>
+      <ion-input
+        type="number"
+        formControlName="capacity"
+        name="capacity"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">{{ 'address' | translate }}</ion-label>
+      <ion-input
+        required="true"
+        type="text"
+        formControlName="address"
+        name="address"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">{{ 'description' | translate }}</ion-label>
+      <ion-input
+        required="true"
+        type="text"
+        formControlName="description"
+        name="description"
+      ></ion-input>
+    </ion-item>
+
+  </form>
+</ion-content>

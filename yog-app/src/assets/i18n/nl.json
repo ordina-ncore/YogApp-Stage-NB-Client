@@ -49,5 +49,19 @@
   "remove": "Verwijder",
   "unregister": "Uitschrijven",
   "teacher": "Leerkracht",
-  "fetching_data": "Data aan het ophalen..."
+  "fetching_data": "Data aan het ophalen...",
+  "fetching_rooms": "Ruimtes aan het ophalen...",
+  "rooms": "Ruimtes",
+  "fetching_room_details": "Details van de ruimte aan het ophalen...",
+  "removing_room": "De ruimte aan het verwijderen...",
+  "sure_remove_room": "Weet u zeker dat u deze ruimte wilt verwijderen ?",
+  "room-details": "Details van de ruimte",
+  "updating_room": "Bijwerken van de ruimte...",
+  "name": "Naam",
+  "capacity": "Capaciteit",
+  "address": "Adres",
+  "description": "Beschrijving",
+  "edit_room": "Ruimte bewerken",
+  "creating_room": "Aanmaken van de ruimte...",
+  "create_new_room": "Nieuwe ruimte aanmaken"
 }

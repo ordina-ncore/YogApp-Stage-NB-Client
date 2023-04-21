@@ -1,0 +1,56 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ 'rooms' | translate }}</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="onBackBtnClicked()"
+        ><ion-icon name="chevron-back-outline"></ion-icon>{{ 'back' | translate }}</ion-button
+      >
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="onBtnCreateNewRoomClicked()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content scroll-y="true">
+<div *ngIf="receivedRooms && receivedRooms.length > 0">
+  <ion-list>
+    <div *ngFor="let room of receivedRooms">
+      <ion-card
+        class="d-flex ion-justify-content-between ion-align-items-center ion-padding card"
+        (click)="onBtnEditRoomsClicked(room.id)"
+      >
+        <div class="d-flex ion-justify-content-start ion-align-items-center">
+          <div>
+            <ion-card-title>
+              <ion-text class="cardTitle">{{ room.name }}</ion-text>
+            </ion-card-title>
+            <ion-card-subtitle class="cardSubtitle">
+              <ion-grid class="ion-no-padding">
+                <ion-row>
+                  <ion-col>
+                    <ion-icon class="always" name="people-outline"></ion-icon>
+                    {{ room.capacity  }}
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col class="truncate"
+                    ><ion-icon name="location-outline"></ion-icon>
+                    {{ room.address}}
+                    </ion-col
+                  >
+                </ion-row>
+              </ion-grid>
+            </ion-card-subtitle>
+          </div>
+        </div>
+        <div>
+          <ion-icon name="chevron-forward-outline" size="large"></ion-icon>
+        </div>
+      </ion-card>
+    </div>
+  </ion-list>
+</div>
+</ion-content>

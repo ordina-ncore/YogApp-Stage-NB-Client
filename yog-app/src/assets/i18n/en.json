@@ -49,5 +49,19 @@
   "remove": "Remove",
   "unregister": "Unregister",
   "teacher": "Teacher",
-  "fetching_data": "Fetching data..."
+  "fetching_data": "Fetching data...",
+  "fetching_rooms": "Fetching rooms...",
+  "rooms": "Rooms",
+  "fetching_room_details": "Fetching room details...",
+  "removing_room": "Seleting the room..",
+  "sure_remove_room": "Are you sure you wish to delete this room",
+  "room-details": "Room details",
+  "updating_room": "Updating the room...",
+  "name": "Name",
+  "capacity": "Capacity",
+  "address": "Address",
+  "description": "Description",
+  "edit_room": "Edit room",
+  "creating_room": "Creating the room...",
+  "create_new_room": "Create a new Room"
 }

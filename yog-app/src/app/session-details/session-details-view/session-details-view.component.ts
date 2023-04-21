@@ -99,6 +99,11 @@ export class SessionDetailsViewComponent implements OnChanges, OnInit {
       //this.GetCurrentUserMatNumber();
     }
   }
+  showRoomDetails(roomId: string | undefined){
+    if(roomId){
+      this.router.navigate(['tabs/room-details', roomId]);
+    }
+  }
 
   onBackBtnClicked() {
     this.router.navigate(['tabs/upcoming-sessions']);

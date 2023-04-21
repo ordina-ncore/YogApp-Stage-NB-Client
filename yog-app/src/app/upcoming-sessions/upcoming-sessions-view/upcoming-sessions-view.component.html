@@ -19,7 +19,7 @@
           </div>
           <div>
             <ion-card-title>
-              <ion-text class="cardTitle">{{ session.title }}</ion-text>
+              <ion-text class="cardTitle truncate">{{ session.title }}</ion-text>
             </ion-card-title>
             <ion-card-subtitle class="cardSubtitle">
               <ion-grid class="ion-no-padding">
@@ -30,7 +30,7 @@
                   </ion-col>
                 </ion-row>
                 <ion-row>
-                  <ion-col
+                  <ion-col class="truncate"
                     name="today-outline"
                     [class.today]="
                       getDayString(session.startDateTime) === this.translate.instant('today')
@@ -49,11 +49,11 @@
                   >
                 </ion-row>
                 <ion-row>
-                  <ion-col
-                    ><ion-icon name="location-outline"></ion-icon>
+                  <ion-col class="truncate"
+                    ><ion-icon name="location-outline" ></ion-icon>
                     {{ session.room?.name }}</ion-col
                   >
-                  <ion-col
+                  <ion-col class="truncate"
                     ><ion-icon name="person-outline"></ion-icon>
                     {{getTeacherNameString(session)}}
                     </ion-col

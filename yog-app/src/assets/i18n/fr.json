@@ -49,5 +49,19 @@
   "remove": "Retirer",
   "unregister": "Se désinscrire",
   "teacher": "Instructeur",
-  "fetching_data": "Récupération de données..."
+  "fetching_data": "Récupération de données...",
+  "fetching_rooms": "Recherche de pièces...",
+  "rooms": "Pièces",
+  "fetching_room_details": "Récupération des détails de la pièce...",
+  "removing_room": "Supprimer la pièce...",
+  "sure_remove_room": "Êtes-vous sûr de vouloir supprimer cette pièce",
+  "room-details": "Détails de la pièce",
+  "updating_room": "Mise à jour de la pièce...",
+  "name": "Nom",
+  "capacity": "Capacité",
+  "address": "Adresse",
+  "description": "Description",
+  "edit_room": "Editer la pièce",
+  "creating_room": "Créer la pièce...",
+  "create_new_room": "Créer une nouvelle Pièce"
 }

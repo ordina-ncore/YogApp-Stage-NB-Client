@@ -12,7 +12,9 @@ export interface Room {
   id?: string;
   name?: string;
   address?: string;
+  description?: string;
   capacity?: number;
+  isDeleted?: boolean;
 }
 
 export interface SessionParticipant {
@@ -58,4 +60,17 @@ export interface CreateSessionParticipantInput {
   sessionId?: string;
   userAzureId?: string;
   matNumber?: number;
+}
+export interface CreateRoomInput {
+  name?: string;
+  address?: string;
+  capacity?: number;
+  description?: string;
+}
+export interface EditRoomInput {
+  id?: string;
+  name?: string;
+  address?: string;
+  capacity?: number;
+  description?: string;
 }

@@ -27,6 +27,11 @@ const routes: Routes = [
           import('../my-sessions/my-sessions.module').then((m) => m.MySessionsPageModule),
       },
       {
+        path: 'rooms',
+        loadChildren: () =>
+          import('../rooms/rooms.module').then((m) => m.RoomsPageModule),
+      },
+      {
         path: 'profile',
         loadChildren: () =>
           import('../profile/profile.module').then((m) => m.ProfilePageModule),
@@ -43,6 +48,27 @@ const routes: Routes = [
         loadChildren: () =>
           import('../create-session/create-session.module').then(
             (m) => m.CreateSessionPageModule
+          ),
+      },
+      {
+        path: 'create-room',
+        loadChildren: () =>
+          import('../create-room/create-room.module').then(
+            (m) => m.CreateRoomPageModule
+          ),
+      },
+      {
+        path: 'room-details/:id',
+        loadChildren: () =>
+          import('../room-details/room-details.module').then(
+            (m) => m.RoomDetailsPageModule
+          ),
+      },
+      {
+        path: 'edit-room/:id',
+        loadChildren: () =>
+          import('../edit-room/edit-room.module').then(
+            (m) => m.EditRoomPageModule
           ),
       },
       {
