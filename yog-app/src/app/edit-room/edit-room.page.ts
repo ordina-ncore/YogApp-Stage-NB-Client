@@ -43,7 +43,7 @@ export class EditRoomPage implements OnInit {
       },
       (error) => {
         loading.dismiss();
-        this.toasterService.presentToast('top', error.message, 1500);
+        this.toasterService.presentToast('top', this.translate.instant(error?.networkError.error.errors[0].message), 2000);
       }
     );
   }

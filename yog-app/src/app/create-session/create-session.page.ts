@@ -56,7 +56,7 @@ export class CreateSessionPage implements OnInit {
       },
       (error) => {
         loading.dismiss();
-        this.toasterService.presentToast('top', error.message, 1500);
+        this.toasterService.presentToast('top', this.translate.instant(error?.networkError.error.errors[0].message), 2000);
       }
     );
   }
@@ -115,6 +115,8 @@ export class CreateSessionPage implements OnInit {
           input: sessionInput,
         },
       })
-      .pipe(map((result: any) => result.data.createSession));
+      .pipe(map((result: any) => {
+         return result.data.createSession
+      }));
   }
 }

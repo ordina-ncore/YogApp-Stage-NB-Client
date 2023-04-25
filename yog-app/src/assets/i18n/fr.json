@@ -63,5 +63,16 @@
   "description": "Description",
   "edit_room": "Editer la pièce",
   "creating_room": "Créer la pièce...",
-  "create_new_room": "Créer une nouvelle Pièce"
+  "create_new_room": "Créer une nouvelle Pièce",
+  "RoomUnavailableException": "La pièce sélectionnée est indisponible pendant le créneau horaire choisi",
+  "ParticipantsExceedRoomCapacityException": "Le nombre maximum de participants dépasse la capacité de la pièce sélectionnée",
+  "SessionCanNotBeInThePastException": "Vous ne pouvez pas créer une session dans le passé",
+  "SessionTooShortException": "Une session doit durer au moins 15 minutes",
+  "SessionStartTimeBeforeSessionEndtimeException": "La session doit se terminer après avoir commencé",
+  "NoRoomSelectedException": "Veuillez sélectionner une pièce",
+  "CapacityCanNotBeSmallerThanAmountOfParticipantsException": "La capacité de la session ne peut pas être inférieure au nombre de participants",
+  "CanotNotSignUpForTakenMatException": "Ce tapis a déjà été pris",
+  "CanNotReduceCapacityIfRoomIsPlannedForUpcomingSessionException": "Vous ne pouvez pas réduire la capacité de cette pièce car elle est utilisée dans une session à venir, veuillez éditer la pièce de la session avant d'effectuer cette action",
+  "CanNotDeleteRoomIfRoomIsPlannedForUpcomingSessionException": "Vous ne pouvez pas supprimer cette pièce car elle est utilisée lors d'une prochaine session, veuillez éditer la session avant d'effectuer cette action",
+  "FailedToFetchUpcomingSessions": "Une erreur inattendue s'est produite lors de la recherche des sessions à venir, veuillez réessayer plus tard..."
 }

@@ -63,5 +63,16 @@
   "description": "Description",
   "edit_room": "Edit room",
   "creating_room": "Creating the room...",
-  "create_new_room": "Create a new Room"
+  "create_new_room": "Create a new Room",
+  "RoomUnavailableException": "The selected room is unavailable during the chosen timeslot",
+  "ParticipantsExceedRoomCapacityException": "The maximum number of participants exceeds the capacity of the selected room",
+  "SessionCanNotBeInThePastException": "You can not create a session in the past",
+  "SessionTooShortException": "A session must at least be 15 minutes long",
+  "SessionStartTimeBeforeSessionEndtimeException": "The session must end after it has started",
+  "NoRoomSelectedException": "Please select a room",
+  "CapacityCanNotBeSmallerThanAmountOfParticipantsException": "The capacity of the session can not be smaller than the amount of registered users for this session, please remove users from this session before being able to perform this action.",
+  "CanotNotSignUpForTakenMatException": "This mat has already been taken",
+  "CanNotReduceCapacityIfRoomIsPlannedForUpcomingSessionException": "You can not reduce the capacity of this room because it is being used in an upcoming session, please edit the room of the session before performing this action",
+  "CanNotDeleteRoomIfRoomIsPlannedForUpcomingSessionException": "You can not delete this room because it is being used in an upcoming session, please edit the room of the session before performing this action",
+  "FailedToFetchUpcomingSessions": "An unexpected error occured while trying to fetch the upcoming sessions, please try again later.."
 }

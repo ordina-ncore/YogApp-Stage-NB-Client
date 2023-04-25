@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Apollo, gql } from 'apollo-angular';
 import { lastValueFrom, map, Observable, of, switchMap } from 'rxjs';
 import { Session, User } from 'src/models';
+import { ToasterService } from '../shared/services/toaster.service';
 
 @Component({
   selector: 'app-upcoming-sessions',
@@ -24,7 +25,7 @@ export class UpcomingSessionsPage implements OnInit {
   constructor(
     private apollo: Apollo,
     private router: Router,
-    private navController: NavController,
+    private toasterService: ToasterService,
     private loadingCtrl: LoadingController,
     private msalService: MsalService,
     private translate: TranslateService
@@ -95,6 +96,7 @@ export class UpcomingSessionsPage implements OnInit {
       error: () => {
         this.showLoader = false;
         subscription.unsubscribe();
+        this.toasterService.presentToast('top', this.translate.instant('FailedToFetchUpcomingSessions'), 2000);
       },
     });
   }

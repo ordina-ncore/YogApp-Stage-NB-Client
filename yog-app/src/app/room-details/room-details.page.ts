@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Apollo, gql } from 'apollo-angular';
 import { Observable, map } from 'rxjs';
 import { Room } from 'src/models';
+import { ToasterService } from '../shared/services/toaster.service';
 
 @Component({
   selector: 'app-room-details',
@@ -20,7 +21,8 @@ export class RoomDetailsPage implements OnInit {
     private loadingCtrl: LoadingController,
     public alertController: AlertController,
     private router: Router,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private toasterService: ToasterService
   ) {
     if (this.route.snapshot.params['id']) {
       let receivedId: string = this.route.snapshot.params['id'];
@@ -102,12 +104,18 @@ export class RoomDetailsPage implements OnInit {
               this.room$.subscribe((room) => {
 
                 if (room && room.id) {
-                  this.removeRoom(room.id).subscribe((room) => {
-                    if (room?.isDeleted) {
+                  this.removeRoom(room.id).subscribe(
+                    (room) => {
+                      if (room?.isDeleted) {
+                        loading.dismiss();
+                        this.router.navigate(['tabs/rooms']);
+                      }
+                    },
+                    (error) => {
                       loading.dismiss();
-                      this.router.navigate(['tabs/rooms']);
+                      this.toasterService.presentToast('top', this.translate.instant(error?.networkError.error.errors[0].message), 2000);
                     }
-                  });
+                  );
                 }
               });
             }

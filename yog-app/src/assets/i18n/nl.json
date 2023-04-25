@@ -63,5 +63,16 @@
   "description": "Beschrijving",
   "edit_room": "Ruimte bewerken",
   "creating_room": "Aanmaken van de ruimte...",
-  "create_new_room": "Nieuwe ruimte aanmaken"
+  "create_new_room": "Nieuwe ruimte aanmaken",
+  "RoomUnavailableException": "De geselecteerde ruimte is niet beschikbaar tijdens het gekozen tijdslot",
+  "ParticipantsExceedRoomCapacityException": "Het maximum aantal deelnemers overschrijdt de capaciteit van de geselecteerde ruimte",
+  "SessionCanNotBeInThePastException": "U kunt geen sessie aanmaken in het verleden",
+  "SessionTooShortException": "Een sessie moet minstens 15 minuten duren",
+  "SessionStartTimeBeforeSessionEndtimeException": "De sessie moet eindigen nadat deze is begonnen",
+  "NoRoomSelectedException": "Gelieve een ruimte te selecteren.",
+  "CapacityCanNotBeSmallerThanAmountOfParticipantsException": "De capaciteit van de sessie kan niet kleiner zijn dan het aantal geregistreerde gebruikers voor deze sessie, verwijder de gebruikers uit deze sessie voordat u deze actie kunt uitvoeren.",
+  "CanotNotSignUpForTakenMatException": "Deze mat is al bezet.",
+  "CanNotReduceCapacityIfRoomIsPlannedForUpcomingSessionException": "U kunt de capaciteit van deze ruimte niet verlagen omdat deze wordt gebruikt in een komende sessie, pas de ruimte van de sessie aan voordat u deze actie uitvoert",
+  "CanNotDeleteRoomIfRoomIsPlannedForUpcomingSessionException": "U kunt deze ruimte niet verwijderen omdat deze wordt gebruikt in een komende sessie, bewerk de ruimte van de sessie voordat u deze actie uitvoert.",
+  "FailedToFetchUpcomingSessions": "Er is een onverwachte fout opgetreden tijdens het ophalen van de komende sessies, probeer het later nog eens.."
 }
