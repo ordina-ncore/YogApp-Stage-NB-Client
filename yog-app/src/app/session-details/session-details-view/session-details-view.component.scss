@@ -13,3 +13,28 @@
 .bottom {
   margin-bottom: 15%;
 }
+
+.cardTitleSessionDetails2 {
+
+  text-align: center;
+  margin-left: auto;
+}
+
+.location p {
+  color: darkgreen;
+}
+
+.imgSessionDetail img {
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 15px;
+}
+
+.instructorName {
+  font-size: large;
+  font-weight: bold;
+}
+
+.truncate {
+  text-overflow: ellipsis;
+}

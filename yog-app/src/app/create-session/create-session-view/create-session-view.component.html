@@ -53,50 +53,51 @@
         >
       </ion-select>
     </ion-item>
+    <div class="d-flex">
+      <ion-item>
+        <ion-label position="floating">{{ 'start_time' | translate }}</ion-label>
+        <ion-input
+          name="startDateTime"
+          id="startDateTime"
+          formControlName="startDateTime"
+          [value]="form.value.startDateTime"
+        ></ion-input>
+        <ion-popover trigger="startDateTime" size="auto">
+          <ng-template>
+            <ion-datetime
+              presentation="date-time"
+              formControlName="startDateTime"
+              name="startDateTime"
+              [min]="currentDay"
+              [minuteValues]="[0, 15, 30, 45]"
+              locale="nl-NL"
+            ></ion-datetime>
+          </ng-template>
+        </ion-popover>
+      </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">{{ 'start_time' | translate }}</ion-label>
-      <ion-input
-        name="startDateTime"
-        id="startDateTime"
-        formControlName="startDateTime"
-        [value]="form.value.startDateTime"
-      ></ion-input>
-      <ion-popover trigger="startDateTime" size="cover">
-        <ng-template>
-          <ion-datetime
-            presentation="date-time"
-            formControlName="startDateTime"
-            name="startDateTime"
-            [min]="currentDay"
-            [minuteValues]="[0, 15, 30, 45]"
-            locale="nl-NL"
-          ></ion-datetime>
-        </ng-template>
-      </ion-popover>
-    </ion-item>
-
-    <ion-item [disabled]="!form.value.startDateTime">
-      <ion-label position="floating">{{ 'end_time' | translate }}</ion-label>
-      <ion-input
-        name="endDateTime"
-        id="endDateTime"
-        formControlName="endDateTime"
-        [value]="form.value.endDateTime"
-      ></ion-input>
-      <ion-popover trigger="endDateTime" size="cover">
-        <ng-template>
-          <ion-datetime
-            presentation="date-time"
-            formControlName="endDateTime"
-            name="endDateTime"
-            [min]="form.value.startDateTime"
-            [max]="getStartDateDay()"
-            [minuteValues]="[0, 15, 30, 45]"
-            locale="nl-NL"
-          ></ion-datetime>
-        </ng-template>
-      </ion-popover>
-    </ion-item>
+      <ion-item [disabled]="!form.value.startDateTime">
+        <ion-label position="floating">{{ 'end_time' | translate }}</ion-label>
+        <ion-input
+          name="endDateTime"
+          id="endDateTime"
+          formControlName="endDateTime"
+          [value]="form.value.endDateTime"
+        ></ion-input>
+        <ion-popover trigger="endDateTime" size="cover">
+          <ng-template>
+            <ion-datetime
+              presentation="time"
+              formControlName="endDateTime"
+              name="endDateTime"
+              [min]="form.value.startDateTime"
+              [max]="getStartDateDay()"
+              [minuteValues]="[0, 15, 30, 45]"
+              locale="nl-NL"
+            ></ion-datetime>
+          </ng-template>
+        </ion-popover>
+      </ion-item>
+    </div>
   </form>
 </ion-content>

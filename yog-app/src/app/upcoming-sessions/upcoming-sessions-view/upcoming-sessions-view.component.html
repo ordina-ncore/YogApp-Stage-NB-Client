@@ -10,13 +10,11 @@
   <ion-list>
     <div *ngFor="let session of receivedSessions">
       <ion-card
-        class="d-flex ion-justify-content-between ion-align-items-center ion-padding card"
+        class="d-flex ion-justify-content-between ion-align-items-center ion-padding card colorCard"
         (click)="onBtnShowSessionsDetailsClicked(session.id)"
       >
         <div class="d-flex ion-justify-content-start ion-align-items-center">
-          <div class="ion-padding">
-            <ion-icon name="today-outline" size="large"></ion-icon>
-          </div>
+
           <div>
             <ion-card-title>
               <ion-text class="cardTitle truncate">{{ session.title }}</ion-text>

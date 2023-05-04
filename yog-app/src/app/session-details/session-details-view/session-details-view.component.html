@@ -15,7 +15,7 @@
         (click)="signUp()"
         >{{ 'sign_up' | translate }}</ion-button
       >
-      <ion-button
+      <ion-button class="truncate"
         *ngIf="
           currentUser?.role === 'User' && GetCurrentUserMatNumber() !== null
         "
@@ -37,7 +37,7 @@
       ></ion-button>
     </ion-buttons>
 
-    <ion-title size="medium">{{ 'session_details' | translate }}</ion-title>
+    <ion-title size="medium" class="truncate">{{ 'session_details' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -52,35 +52,41 @@
 
 <ion-content *ngIf="receivedSession">
   <ion-card class="bottom">
-    <ion-card-header>
-      <ion-card-title>
-        <ion-text class="cardTitleSessionDetails">{{
-          receivedSession.title
-        }}</ion-text>
-      </ion-card-title>
-    </ion-card-header>
     <ion-card-content class="ion-no-padding">
       <ion-grid class="ion-padding">
-        <ion-row>
+        <ion-row class="ion-text-center">
+          <ion-col>
+          <ion-card-title class="ion-text-center">
+            <ion-text class="cardTitleSessionDetails2 ion-text-center">{{
+              receivedSession.title
+            }}</ion-text>
+          </ion-card-title>
+        </ion-col>
+        </ion-row>
+        <ion-row class="ion-text-center">
+            <ion-col class="location" (click)='showRoomDetails(receivedSession.room?.id)'
+              ><b><p><ion-icon name="location-outline"></ion-icon>
+              {{ receivedSession.room?.name }}</p></b></ion-col
+            >
+        </ion-row>
+        <ion-row class="ion-text-center">
           <ion-col
             ><ion-icon name="today-outline"></ion-icon>
             {{ receivedSession.startDateTime | date : "dd/MM/yyyy" }}</ion-col
           >
           <ion-col
-            ><ion-icon name="time-outline"></ion-icon>
+            >
             {{ receivedSession.startDateTime | date : "HH:mm" }} -
             {{ receivedSession.endDateTime | date : "HH:mm" }}</ion-col
           >
         </ion-row>
-        <ion-row>
-          <ion-col (click)='showRoomDetails(receivedSession.room?.id)'
-            ><u><ion-icon name="location-outline"></ion-icon>
-            {{ receivedSession.room?.name }}</u></ion-col
-          >
+        <ion-row class="ion-text-center">
           <ion-col
-            ><ion-icon name="person-outline"></ion-icon>
-            {{ receivedSession.teacher?.firstName }}
-            {{ receivedSession.teacher?.lastName }}</ion-col
+          class="imgSessionDetail">
+            <img src="{{receivedSession.teacher?.profilePicture}}" >
+            <p class="instructorName">{{ receivedSession.teacher?.firstName }}
+            {{ receivedSession.teacher?.lastName }}</p>
+            <small><p>{{ 'teacher' | translate }}</p></small></ion-col
           >
         </ion-row>
       </ion-grid>
@@ -100,7 +106,7 @@
                   "
                 >
                   <ion-button
-                    color="primary"
+                    color="danger"
                     [disabled]="currentUser?.role === 'User'"
                     (click)="onBtnShowParticipantInfoClicked(i)"
                   >
@@ -112,7 +118,7 @@
                 >
                   <ion-button
                     [color]="
-                      currentUser?.role === 'User' ? 'success' : 'primary'
+                      currentUser?.role === 'User' ? 'primary' : 'primary'
                     "
                     [disabled]="currentUser?.role === 'User'"
                   >
@@ -126,7 +132,7 @@
                 </ng-container>
                 <ng-container *ngIf="!isMatNumberTaken(i)">
                   <ion-button
-                    [color]="selectedMatNumber === i ? 'success' : 'medium'"
+                    [color]="selectedMatNumber === i ? 'primary' : 'success'"
                     (click)="selectedMatNumber = i"
                     [disabled]="
                       (currentUser?.role === 'Teacher' &&
@@ -156,7 +162,7 @@
                 "
               >
                 <ion-button
-                  [color]="selectedMatNumber === i ? 'success' : 'medium'"
+                  [color]="selectedMatNumber === i ? 'primary' : 'success'"
                   (click)="selectedMatNumber = i"
                   [disabled]="
                     currentUser?.role === 'Teacher' && !isMatNumberTaken(i)
