@@ -74,5 +74,6 @@
   "CanotNotSignUpForTakenMatException": "Deze mat is al bezet.",
   "CanNotReduceCapacityIfRoomIsPlannedForUpcomingSessionException": "U kunt de capaciteit van deze ruimte niet verlagen omdat deze wordt gebruikt in een komende sessie, pas de ruimte van de sessie aan voordat u deze actie uitvoert",
   "CanNotDeleteRoomIfRoomIsPlannedForUpcomingSessionException": "U kunt deze ruimte niet verwijderen omdat deze wordt gebruikt in een komende sessie, bewerk de ruimte van de sessie voordat u deze actie uitvoert.",
-  "FailedToFetchUpcomingSessions": "Er is een onverwachte fout opgetreden tijdens het ophalen van de komende sessies, probeer het later nog eens.."
+  "FailedToFetchUpcomingSessions": "Er is een onverwachte fout opgetreden tijdens het ophalen van de komende sessies, probeer het later nog eens..",
+  "number": "Nummer"
 }

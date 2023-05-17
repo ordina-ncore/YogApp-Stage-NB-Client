@@ -37,7 +37,7 @@
 }
 
 .cardTitle {
-  font-size: 50%;
+  font-size: 65%;
 }
 
 .card {
@@ -56,18 +56,11 @@
   width: 100%;
 }
 
-// ion-toolbar {
-//   --background: #c2fbff;
-// }
-
-// ion-card {
-//   --background: #c2fbff;
-// }
-
-// ion-content {
-//   --background: #c2fbff;
-// }
-
-// ion-list-item {
-//   --background: #c2fbff;
-// }
+.imgYoga {
+  display: flex;
+  margin: auto;
+  margin-top: 100px;
+  max-height: 300px;
+  max-width: 300px;
+  opacity: 0.5;
+}

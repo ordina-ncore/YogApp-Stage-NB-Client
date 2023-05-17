@@ -17,7 +17,9 @@
 
           <div>
             <ion-card-title>
-              <ion-text class="cardTitle truncate">{{ session.title }}</ion-text>
+              <ion-text class="cardTitle truncate">{{ session.title }}
+                <ion-icon *ngIf="isCurrentUserSignedUpForThisSession(session)" name="checkmark-circle-outline" class="green"></ion-icon>
+              </ion-text>
             </ion-card-title>
             <ion-card-subtitle class="cardSubtitle">
               <ion-grid class="ion-no-padding">

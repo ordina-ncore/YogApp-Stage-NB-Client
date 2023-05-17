@@ -57,6 +57,19 @@ export class UpcomingSessionsViewComponent implements OnChanges {
       return '';
     }
   }
+
+  isCurrentUserSignedUpForThisSession(session:Session):boolean{
+    const user: User | null = JSON.parse(
+      localStorage.getItem('currentUser') || 'null'
+    );
+    if(session && session.participants !== undefined && session.participants.some(
+      (participant: any) => participant.user.azureId === user?.azureId
+    )){
+      return true;
+    }
+    return false;
+  }
+
   getCapacityStringColor(session: Session): string {
     if (session.capacity !== undefined && session.participants !== undefined) {
       if (session.capacity <= session.participants.length) {

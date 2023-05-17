@@ -102,7 +102,7 @@
               >
                 <ng-container
                   *ngIf="
-                    isMatNumberTaken(i) && GetCurrentUserMatNumber() === null
+                    isMatNumberTaken(i) && GetCurrentUserMatNumber() !== i
                   "
                 >
                   <ion-button
@@ -113,6 +113,7 @@
                     <ion-icon name="person-circle-outline"></ion-icon>
                   </ion-button>
                 </ng-container>
+
                 <ng-container
                   *ngIf="isMatNumberTaken(i) && GetCurrentUserMatNumber() === i"
                 >

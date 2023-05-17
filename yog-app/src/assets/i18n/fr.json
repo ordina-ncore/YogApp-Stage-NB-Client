@@ -74,5 +74,6 @@
   "CanotNotSignUpForTakenMatException": "Ce tapis a déjà été pris",
   "CanNotReduceCapacityIfRoomIsPlannedForUpcomingSessionException": "Vous ne pouvez pas réduire la capacité de cette pièce car elle est utilisée dans une session à venir, veuillez éditer la pièce de la session avant d'effectuer cette action",
   "CanNotDeleteRoomIfRoomIsPlannedForUpcomingSessionException": "Vous ne pouvez pas supprimer cette pièce car elle est utilisée lors d'une prochaine session, veuillez éditer la session avant d'effectuer cette action",
-  "FailedToFetchUpcomingSessions": "Une erreur inattendue s'est produite lors de la recherche des sessions à venir, veuillez réessayer plus tard..."
+  "FailedToFetchUpcomingSessions": "Une erreur inattendue s'est produite lors de la recherche des sessions à venir, veuillez réessayer plus tard...",
+  "number": "Numéro"
 }

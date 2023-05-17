@@ -74,5 +74,6 @@
   "CanotNotSignUpForTakenMatException": "This mat has already been taken",
   "CanNotReduceCapacityIfRoomIsPlannedForUpcomingSessionException": "You can not reduce the capacity of this room because it is being used in an upcoming session, please edit the room of the session before performing this action",
   "CanNotDeleteRoomIfRoomIsPlannedForUpcomingSessionException": "You can not delete this room because it is being used in an upcoming session, please edit the room of the session before performing this action",
-  "FailedToFetchUpcomingSessions": "An unexpected error occured while trying to fetch the upcoming sessions, please try again later.."
+  "FailedToFetchUpcomingSessions": "An unexpected error occured while trying to fetch the upcoming sessions, please try again later..",
+  "number": "Number"
 }

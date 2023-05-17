@@ -238,7 +238,7 @@ export class SessionDetailsViewComponent implements OnChanges, OnInit {
       header: `${participant.user?.firstName} ${participant.user?.lastName}`,
       message: ` <div>
       <p><ion-icon name="time-outline"></ion-icon> ${participant.timeStampSignUp}</p>
-      <p><ion-icon name="clipboard-outline"></ion-icon> ${participant.matNumber}</p>
+      <p><ion-icon name="clipboard-outline"></ion-icon>${this.translate.instant('number')}. ${participant.matNumber + 1}</p>
         <img class="popUpImg" src="${participant.user?.profilePicture}" />
         </div>
     `,
