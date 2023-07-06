@@ -27,3 +27,22 @@ deze data wordt dan in de component.ts file van de dumb component opgevangen als
 @Output() btnShowSessionsDetailsClicked = new EventEmitter<[string]>();
 ```
 Het is dankzij de **@Output()** ook mogelijk om vanuit de dumb component data terug mee te geven aan de smart component (bijvoorbeeld form data)
+
+# Screenshots
+Some screenshots of the application
+
+Startscreen for a user
+
+![screenshots startscreen users](./resources/screenshots/screenshot-startscreen-users.png)
+
+Register for a session
+
+![screenshots register session](./resources/screenshots/screenshots-register-session.png)
+
+Edit a session
+
+![screenshots edit session](./resources/screenshots/screenshot-edit-session.png)
+
+Locations
+
+![screenshots locations](./resources/screenshots/screenshot-locations.png)
